@@ -5,7 +5,8 @@
 namespace cs126linkedlist {
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList() {
-
+        head = nullptr;
+        tail = nullptr;
     }
 
     template<typename ElementType>
@@ -45,47 +46,99 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     void LinkedList<ElementType>::push_front(ElementType value) {
-
+        LinkedListNode *node = new LinkedListNode(value);
+        if (!head) {
+            head = node;
+        } else {
+            LinkedList *old_head = head;
+            LinkedListNode *new_node = new LinkedListNode(value);
+            head = new_node;
+            new_node -> next = old_head;
+            while (old_head -> next) {
+                old_head = old_head -> next;
+            }
+        }
     }
 
     template<typename ElementType>
     void LinkedList<ElementType>::push_back(ElementType value) {
-
+        LinkedListNode *node = new LinkedListNode(value);
+        if (!head) {
+            head = node;
+        } else {
+            LinkedListNode *tempNode = head;
+            while (tempNode -> next) {
+                tempNode = tempNode -> next;
+            }
+            tempNode -> next = new LinkedListNode(value);
+            tail = tempNode;
+        }
     }
 
     template<typename ElementType>
     ElementType LinkedList<ElementType>::front() const {
-
+        return head;
     }
 
     template<typename ElementType>
     ElementType LinkedList<ElementType>::back() const {
-
+        return tail;
     }
 
     template<typename ElementType>
     void LinkedList<ElementType>::pop_front() {
-
+        if (!head) {
+            return;
+        } else {
+            LinkedList *temp_node = head;
+            delete head;
+            head = nullptr;
+            head = temp_node -> next;
+        }
+        }
     }
 
     template<typename ElementType>
     void LinkedList<ElementType>::pop_back() {
-
+        if (!head) {
+            return;
+        } else {
+            LinkedList *temp_node = tail;
+            while (temp_node -> next != tail) {
+            }
+            delete tail;
+            tail = nullptr;
+            tail = temp_node;
+            temp_node -> next = nullptr;
+        }
     }
 
     template<typename ElementType>
     int LinkedList<ElementType>::size() const {
-
+        LinkedList *temp_node = head;
+        int size = 0;
+        while (temp_node -> next) {
+            temp_node = temp_node -> next;
+            size++;
+        }
+        return size;
     }
 
     template<typename ElementType>
     bool LinkedList<ElementType>::empty() const {
-
+        if (!head) {
+            return true;
+        }
+        return false;
     }
 
     template<typename ElementType>
     void LinkedList<ElementType>::clear() {
-
+        LinkedList *temp_node = head;
+        while (temp_node -> next) {
+            temp_node = temp_node -> next;
+        }
+        head = new LinkedListNode(nullptr);
     }
 
     template<typename ElementType>

@@ -17,6 +17,23 @@ namespace cs126linkedlist {
      */
 
     public:
+
+        class LinkedListNode {
+        public:
+            ElementType data;
+            LinkedListNode *next;
+            LinkedListNode(ElementType value) {
+                data = value;
+                next = nullptr;
+            }
+            ~LinkedListNode() {
+                if (next) {
+                    delete next;
+                }
+            }
+        };
+        LinkedListNode *head;
+        LinkedListNode *tail;
         LinkedList();                                                   // Default constructor
         explicit LinkedList(const std::vector<ElementType> &values);    // Initilize from vector
 
