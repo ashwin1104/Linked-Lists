@@ -42,6 +42,45 @@ TEST_CASE("back") {
     LinkedList<int> tester = LinkedList<int>(vector);
     REQUIRE(tester.back() == tester.tail -> data);
 }
+TEST_CASE("Pop_front") {
+    std::vector<int> vector2 = {1,2,3,4,5};
+    LinkedList<int> tester = LinkedList<int>(vector2);
+    tester.pop_front();
+    REQUIRE(tester.front() == 2);
+}
+TEST_CASE("Pop_back") {
+    std::vector<int> vector = {1,2,3,4,5};
+    LinkedList<int> tester = LinkedList<int>(vector);
+    tester.pop_back();
+    REQUIRE(tester.back() == 4);
+}
+TEST_CASE("Size") {
+    std::vector<int> vector = {1,2,3,4,5};
+    LinkedList<int> tester = LinkedList<int>(vector);
+    REQUIRE(tester.size() == 5);
+}
+TEST_CASE("Empty") {
+    LinkedList<int> tester = LinkedList<int>();
+    REQUIRE(tester.empty());
+}
+TEST_CASE("Clear") {
+    LinkedList<int> tester = LinkedList<int>();
+    REQUIRE(tester.empty());
+    REQUIRE(tester.head == nullptr);
+}
+
+TEST_CASE("print") {
+    std::vector<int> vector = {1,2,3,4,5};
+    LinkedList<int> tester = LinkedList<int>(vector);
+    std::cout << tester;
+}
+
+TEST_CASE("RemoveOdd") {
+    std::vector<int> vector = {0,1,2};
+    LinkedList<int> tester = LinkedList<int>(vector);
+    tester.RemoveOdd();
+    std::cout << tester;
+}
 //TEST_CASE("Move Constructor") {
 //    std::vector<int> vector = {1,2,3,4,5};
 //    LinkedList<int> tester = LinkedList<int>(vector);
