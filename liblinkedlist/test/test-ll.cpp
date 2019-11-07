@@ -81,19 +81,19 @@ TEST_CASE("RemoveOdd") {
     tester.RemoveOdd();
     std::cout << tester;
 }
-//TEST_CASE("Move Constructor") {
-//    std::vector<int> vector = {1,2,3,4,5};
-//    LinkedList<int> tester = LinkedList<int>(vector);
-//    LinkedList<int> tester2 = tester;
-//    REQUIRE(tester2.front() == 1);
-//    REQUIRE(tester2.back() == 5);
-//    REQUIRE(tester2.front() != tester.front());
-//}
-//
-//TEST_CASE("Destructor") {
-//    std::vector<int> vector = {1,2,3,4,5};
-//    LinkedList<int> tester = LinkedList<int>(vector);
-//    tester = LinkedList<int>();
-//    REQUIRE(tester.head == nullptr);
-//    REQUIRE(tester.tail == nullptr);
-//}
+TEST_CASE("Move Constructor") {
+    std::vector<int> vector = {1,2,3,4,5};
+    LinkedList<int> tester = LinkedList<int>(vector);
+    LinkedList<int> tester2 = tester;
+    REQUIRE(tester2.front() == 1);
+    REQUIRE(tester2.back() == 5);
+    REQUIRE(tester2.front() != tester.front());
+}
+
+TEST_CASE("Destructor") {
+    std::vector<int> vector = {1,2,3,4,5};
+    LinkedList<int> tester = LinkedList<int>(vector);
+    tester = LinkedList<int>();
+    REQUIRE(tester.head == nullptr);
+    REQUIRE(tester.tail == nullptr);
+}

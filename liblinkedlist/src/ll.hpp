@@ -208,22 +208,34 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     bool LinkedList<ElementType>::operator==(const LinkedList<ElementType> &rhs) const {
-        
+        LinkedListNode *current_node = head;
+        LinkedListNode *enemy_node = rhs.head;
+        if (size() != rhs.size()) {
+            return false;
+        }
+        for (int iterator = 0; iterator < size(); iterator++) {
+            if (current_node -> data != enemy_node -> data) {
+                return false;
+            }
+            current_node = current_node -> next;
+            enemy_node = enemy_node -> next;
+        }
     }
 
     template<typename ElementType>
     bool operator!=(const LinkedList<ElementType> &lhs, const LinkedList<ElementType> &rhs) {
-
+        return(!(lhs == rhs));
     }
 
     template<typename ElementType>
     typename LinkedList<ElementType>::iterator &LinkedList<ElementType>::iterator::operator++() {
-
+        iterator
+        LinkedListNode temp_node;
+        return temp_node.data;
     }
 
     template<typename ElementType>
     ElementType &LinkedList<ElementType>::iterator::operator*() const {
-
     }
 
     template<typename ElementType>
@@ -252,18 +264,19 @@ namespace cs126linkedlist {
     }
 
     template<typename ElementType>
-    bool
-    LinkedList<ElementType>::const_iterator::operator!=(const LinkedList<ElementType>::const_iterator &other) const {
+    bool LinkedList<ElementType>::const_iterator::operator!=(const LinkedList<ElementType>::const_iterator &other) const {
 
     }
 
     template<typename ElementType>
     typename LinkedList<ElementType>::const_iterator LinkedList<ElementType>::begin() const {
-
+        iterator temp = new iterator(head);
+        return temp;
     }
 
     template<typename ElementType>
     typename LinkedList<ElementType>::const_iterator LinkedList<ElementType>::end() const {
-
+        iterator temp = new iterator(tail);
+        return temp;
     }
 }
