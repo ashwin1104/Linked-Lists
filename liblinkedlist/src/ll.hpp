@@ -229,54 +229,57 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     typename LinkedList<ElementType>::iterator &LinkedList<ElementType>::iterator::operator++() {
-        iterator
-        LinkedListNode temp_node;
-        return temp_node.data;
+        return iterator(current_->next);
     }
 
     template<typename ElementType>
     ElementType &LinkedList<ElementType>::iterator::operator*() const {
+        return *iterator(current_);
     }
 
     template<typename ElementType>
     bool LinkedList<ElementType>::iterator::operator!=(const LinkedList<ElementType>::iterator &other) const {
-
+        return iterator(current_) == other(current_);
     }
 
     template<typename ElementType>
     typename LinkedList<ElementType>::iterator LinkedList<ElementType>::begin() {
-
-    }
-
-    template<typename ElementType>
-    typename LinkedList<ElementType>::iterator LinkedList<ElementType>::end() {
-
-    }
-
-    template<typename ElementType>
-    typename LinkedList<ElementType>::const_iterator &LinkedList<ElementType>::const_iterator::operator++() {
-
-    }
-
-    template<typename ElementType>
-    const ElementType &LinkedList<ElementType>::const_iterator::operator*() const {
-
-    }
-
-    template<typename ElementType>
-    bool LinkedList<ElementType>::const_iterator::operator!=(const LinkedList<ElementType>::const_iterator &other) const {
-
-    }
-
-    template<typename ElementType>
-    typename LinkedList<ElementType>::const_iterator LinkedList<ElementType>::begin() const {
         iterator temp = new iterator(head);
         return temp;
     }
 
     template<typename ElementType>
-    typename LinkedList<ElementType>::const_iterator LinkedList<ElementType>::end() const {
+    typename LinkedList<ElementType>::iterator LinkedList<ElementType>::end() {
         iterator temp = new iterator(tail);
+        return temp;
+    }
+
+    template<typename ElementType>
+    typename LinkedList<ElementType>::const_iterator &LinkedList<ElementType>::const_iterator::operator++() {
+        const_iterator temp = begin();
+        return temp(current_->next);
+    }
+
+    template<typename ElementType>
+    const ElementType &LinkedList<ElementType>::const_iterator::operator*() const {
+        const_iterator temp = begin();
+        return temp(current_->next);
+    }
+
+    template<typename ElementType>
+    bool LinkedList<ElementType>::const_iterator::operator!=(const LinkedList<ElementType>::const_iterator &other) const {
+        return const_iterator(current_) == other(current_);
+    }
+
+    template<typename ElementType>
+    typename LinkedList<ElementType>::const_iterator LinkedList<ElementType>::begin() const {
+        const_iterator temp = new const_iterator(head);
+        return temp;
+    }
+
+    template<typename ElementType>
+    typename LinkedList<ElementType>::const_iterator LinkedList<ElementType>::end() const {
+        const_iterator temp = new const_iterator(tail);
         return temp;
     }
 }
