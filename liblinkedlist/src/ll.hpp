@@ -11,78 +11,102 @@ namespace cs126linkedlist {
 
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList(const std::vector<ElementType> &values) {
-
+        head = new LinkedListNode(values.at(0));
+        LinkedListNode *temp_node = head;
+        for (int i = 1; i < values.size(); i++) {
+            temp_node -> next = new LinkedListNode(values.at(i));
+            temp_node = temp_node -> next;
+        }
+        tail = temp_node;
     }
 
     // Copy constructor
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList(const LinkedList<ElementType> &source) {
-
+        LinkedListNode *temp_node = source.head;
+        head = temp_node;
+        temp_node = temp_node -> next;
+        while (temp_node != nullptr) {
+            push_back(temp_node -> data);
+            temp_node = temp_node -> next;
+        }
+        tail = source.tail;
     }
 
     // Move constructor
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList(LinkedList<ElementType> &&source) noexcept {
-
+//        head = source.head;
+//        LinkedListNode *current_node = source.head -> next;
+//        while (current_node != nullptr) {
+//            push_back(current_node -> data);
+//            LinkedListNode *next_node = current_node -> next;
+//            delete current_node;
+//            current_node = next_node;
+//        }
+//        tail = source.tail;
     }
 
     // Destructor
     template<typename ElementType>
     LinkedList<ElementType>::~LinkedList() {
-
+//        LinkedListNode *current_node = head;
+//        while(current_node != nullptr) {
+//            LinkedListNode *next_node = current_node -> next;
+//            delete current_node;
+//            current_node = next_node;
+//        }
+//        head = nullptr;
+//        tail = nullptr;
     }
 
     // Copy assignment operator
     template<typename ElementType>
     LinkedList<ElementType> &LinkedList<ElementType>::operator=(const LinkedList<ElementType> &source) {
-
+        LinkedList copy_list = LinkedList(source);
+        return copy_list;
     }
 
     // Move assignment operator
     template<typename ElementType>
     LinkedList<ElementType> &LinkedList<ElementType>::operator=(LinkedList<ElementType> &&source) noexcept {
-
+        LinkedList move_list = LinkedList(source);
+        return move_list;
     }
 
     template<typename ElementType>
     void LinkedList<ElementType>::push_front(ElementType value) {
-        LinkedListNode *node = new LinkedListNode(value);
-        if (!head) {
+        LinkedListNode *node;
+        node = new LinkedListNode(value);
+        if (head == nullptr) {
             head = node;
         } else {
-            LinkedList *old_head = head;
-            LinkedListNode *new_node = new LinkedListNode(value);
-            head = new_node;
-            new_node -> next = old_head;
-            while (old_head -> next) {
-                old_head = old_head -> next;
-            }
+            LinkedListNode *old_head = head;
+            node -> next = old_head;
+            head = node;
         }
     }
 
     template<typename ElementType>
     void LinkedList<ElementType>::push_back(ElementType value) {
-        LinkedListNode *node = new LinkedListNode(value);
-        if (!head) {
+        LinkedListNode *node;
+        node = new LinkedListNode(value);
+        if (head == nullptr) {
             head = node;
         } else {
-            LinkedListNode *tempNode = head;
-            while (tempNode -> next) {
-                tempNode = tempNode -> next;
-            }
-            tempNode -> next = new LinkedListNode(value);
-            tail = tempNode;
+            tail -> next = node;
+            tail = node;
         }
     }
 
     template<typename ElementType>
     ElementType LinkedList<ElementType>::front() const {
-        return head;
+        return head->data;
     }
 
     template<typename ElementType>
     ElementType LinkedList<ElementType>::back() const {
-        return tail;
+        return tail->data;
     }
 
     template<typename ElementType>
@@ -93,8 +117,7 @@ namespace cs126linkedlist {
             LinkedList *temp_node = head;
             delete head;
             head = nullptr;
-            head = temp_node -> next;
-        }
+            head = temp_node->next;
         }
     }
 
@@ -121,15 +144,13 @@ namespace cs126linkedlist {
             temp_node = temp_node -> next;
             size++;
         }
+        size++;
         return size;
     }
 
     template<typename ElementType>
     bool LinkedList<ElementType>::empty() const {
-        if (!head) {
-            return true;
-        }
-        return false;
+        return !head;
     }
 
     template<typename ElementType>
