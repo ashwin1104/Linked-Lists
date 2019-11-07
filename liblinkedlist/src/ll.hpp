@@ -36,28 +36,28 @@ namespace cs126linkedlist {
     // Move constructor
     template<typename ElementType>
     LinkedList<ElementType>::LinkedList(LinkedList<ElementType> &&source) noexcept {
-//        head = source.head;
-//        LinkedListNode *current_node = source.head -> next;
-//        while (current_node != nullptr) {
-//            push_back(current_node -> data);
-//            LinkedListNode *next_node = current_node -> next;
-//            delete current_node;
-//            current_node = next_node;
-//        }
-//        tail = source.tail;
+        head = source.head;
+        LinkedListNode *current_node = source.head -> next;
+        while (current_node != nullptr) {
+            push_back(current_node -> data);
+            LinkedListNode *next_node = current_node -> next;
+            delete current_node;
+            current_node = next_node;
+        }
+        tail = source.tail;
     }
 
     // Destructor
     template<typename ElementType>
     LinkedList<ElementType>::~LinkedList() {
-//        LinkedListNode *current_node = head;
-//        while(current_node != nullptr) {
-//            LinkedListNode *next_node = current_node -> next;
-//            delete current_node;
-//            current_node = next_node;
-//        }
-//        head = nullptr;
-//        tail = nullptr;
+        LinkedListNode *current_node = head;
+        while(current_node != nullptr) {
+            LinkedListNode *next_node = current_node -> next;
+            delete current_node;
+            current_node = next_node;
+        }
+        head = nullptr;
+        tail = nullptr;
     }
 
     // Copy assignment operator
